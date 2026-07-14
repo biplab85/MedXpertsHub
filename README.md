@@ -39,8 +39,8 @@ npm run dev
 npm run build
 ```
 
-Then open `src/index.html` directly in a browser, or serve it via WAMP at
-`http://localhost/sklentr/MedXpertsHub/src/`.
+Then open `index.html` directly in a browser, or serve it via WAMP at
+`http://localhost/sklentr/MedXpertsHub/`.
 
 | Script | Does |
 |--------|------|
@@ -57,6 +57,7 @@ Then open `src/index.html` directly in a browser, or serve it via WAMP at
 MedXpertsHub/
 ├── CLAUDE.md                 ← detailed design/build notes
 ├── README.md
+├── index.html                ← full page markup (~980 lines) — open this
 ├── package.json              ← Dart Sass scripts
 ├── dist/css/main.css         ← GENERATED — do not edit (git-ignored)
 ├── assets/
@@ -64,7 +65,6 @@ MedXpertsHub/
 │   ├── icons/                ← (icons are inline SVG in the markup)
 │   └── fonts/                ← (Inter is a Google web font)
 └── src/
-    ├── index.html            ← full page markup (~980 lines)
     ├── js/main.js            ← mobile nav toggle + scroll-reveal
     └── scss/
         ├── main.scss         ← entry, @use's every partial

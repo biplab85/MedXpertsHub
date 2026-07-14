@@ -62,15 +62,15 @@ Radii: cards `16px` (`$radius`), thumbnails/collage `12px` (`$radius-sm`), pills
 ## 3. Folder Structure
 
 ```
-figma-mcp-server/
+MedXpertsHub/
 ├── CLAUDE.md
+├── index.html                ← full page markup (project root)
 ├── package.json              ← Dart Sass scripts
 ├── dist/css/main.css         ← GENERATED — do not edit
 ├── assets/
 │   ├── images/               ← 73 photos exported from Figma (resized to ≤1400px JPEG)
 │   ├── icons/  fonts/         ← (icons are inline SVG in the HTML; Inter is a Google web font)
 └── src/
-    ├── index.html            ← full page markup
     ├── js/main.js            ← mobile nav toggle
     └── scss/
         ├── main.scss         ← entry, @use's every partial
@@ -102,8 +102,8 @@ npm run dev          # watch src/scss → dist/css/main.css (expanded + source m
 npm run build        # one-off production compile (compressed)
 ```
 
-Open `src/index.html` in the browser, or serve via WAMP at
-`http://localhost/sklentr/figma-mcp-server/src/`.
+Open `index.html` in the browser, or serve via WAMP at
+`http://localhost/sklentr/MedXpertsHub/`.
 
 `dist/` is generated output — never edit by hand.
 
