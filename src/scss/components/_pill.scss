@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+// Category label: coloured dot + coloured text.
+// Colour comes from the inline custom property --c.
+//
+// DEFAULT = plain (no background) — used on nearly every card/list row.
+// Figma: 6px dot + 4px gap + 14px/500 text, no padding, no fill.
+.pill {
+  --c: #{$c-blue};
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: $fw-medium;
+  line-height: 1;
+  color: var(--c);
+
+  &::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c);
+  }
+}
+
+// FILLED = light tinted pill — only on image-overlay feature cards.
+// Figma: bg is a ~5% tint of the category colour, radius 20, height 26, padding 8.
+.pill--filled {
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border-radius: $radius-pill;
+  background: color-mix(in srgb, var(--c) 5%, white);
+}

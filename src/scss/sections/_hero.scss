@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+.hero {
+  &__top {
+    display: grid;
+    grid-template-columns: 800fr 436fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  &__stack {
+    @include flex(column, 24px);
+    > .ocard { flex: 1; }
+  }
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  @include bp($bp-lg) {
+    &__row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @include bp($bp-md) {
+    &__top { grid-template-columns: 1fr; }
+  }
+  @include bp($bp-sm) {
+    &__row { grid-template-columns: 1fr; }
+  }
+}

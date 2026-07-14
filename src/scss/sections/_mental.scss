@@ -1,0 +1,135 @@
+@use '../abstracts' as *;
+
+// "Mental health" featured block (S5)  —  884 left column + 352 promo
+.featured {
+  // "Find more" aligns to the right edge of the 884 left column
+  // (the promo on the right has no header), not the full container width.
+  .sec-head { padding-right: calc(352px + 24px); }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 884fr 352fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  &__left { @include flex(column, 24px); }
+
+  // two large white feature cards
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  // six transparent list rows, 2 columns
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @include bp($bp-md) {
+    .sec-head { padding-right: 0; }
+    &__grid { grid-template-columns: 1fr; }
+    &__cards { grid-template-columns: 1fr; }
+  }
+  @include bp($bp-sm) {
+    &__list { grid-template-columns: 1fr; }
+  }
+}
+
+// ---- Feature card (white, image top + excerpt) ----
+.fcard {
+  display: flex;
+  flex-direction: column;
+  background: $c-white;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+  &:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); transform: translateY(-3px); }
+
+  &__media {
+    aspect-ratio: 430 / 260;
+    overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+  &__body { @include flex(column, 12px); padding: 16px; }
+  &__title {
+    font-size: 24px;
+    font-weight: $fw-semibold;
+    line-height: 28px;
+    color: $c-ink;
+    @include clamp(2);
+  }
+  &__excerpt {
+    font-size: 14px;
+    color: $c-muted;
+    @include clamp(2);
+  }
+}
+
+// ---- List row (transparent) ----
+.lrow {
+  @include flex(row, 24px, center);
+
+  &__thumb {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+  &__body { @include flex(column, 10px); min-width: 0; }
+  &__title {
+    font-size: 20px;
+    font-weight: $fw-semibold;
+    line-height: 1.15;
+    color: $c-ink;
+    @include clamp(2);
+  }
+
+  @include bp($bp-sm) {
+    &__thumb { width: 96px; height: 96px; }
+    &__title { font-size: 18px; }
+  }
+}
+
+// ---- Promo card (image bg + gradient + green button) ----
+.promo-card {
+  position: relative;
+  border-radius: $radius;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 444px;
+  color: $c-white;
+  display: flex;
+
+  &__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  &::after {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(11,16,22,0.15) 30%, rgba(11,16,22,0.85) 100%);
+  }
+
+  &__inner {
+    margin-top: auto;
+    padding: 20px;
+    @include flex(column, 14px, flex-start);
+  }
+  &__eyebrow {
+    font-size: 12px;
+    font-weight: $fw-medium;
+    letter-spacing: 0.08em;
+    color: $c-white;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: $fw-semibold;
+    line-height: 1.15;
+    color: $c-white;
+  }
+  &__text { font-size: 14px; color: rgba(255, 255, 255, 0.85); }
+  &__btn { margin-top: 4px; }
+}

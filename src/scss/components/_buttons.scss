@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+.btn {
+  @include flex(row, 8px, center, center);
+  width: fit-content;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: $fw-medium;
+  white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.05s ease;
+
+  svg { width: 16px; height: 16px; }
+  &:hover { filter: brightness(0.96); }
+  &:active { transform: translateY(1px); }
+}
+
+// White "Contact us" pill in the dark header
+.btn--light {
+  background: $c-white;
+  color: $c-ink;
+}
+
+// Green solid (newsletter / actions)
+.btn--green {
+  background: $c-green;
+  color: $c-white;
+  height: 40px;
+  padding: 0 20px;
+}
+
+// "Find more" / "Explore more": label + green circular chevron button
+.link-more {
+  @include flex(row, 6px, center);
+  font-size: 16px;
+  font-weight: $fw-medium;
+  color: $c-ink;
+
+  &__btn {
+    @include flex(row, 0, center, center);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $c-green;
+    color: $c-white;
+    flex: 0 0 auto;
+    transition: transform 0.15s ease;
+    svg { width: 11px; height: 11px; }
+  }
+  &:hover &__btn { transform: translateX(2px); }
+}

@@ -1,0 +1,33 @@
+// ============================================================
+//  MedXpertsHub — main stylesheet entry
+//  Compiles to dist/css/main.css via Dart Sass (npm run dev/build)
+// ============================================================
+
+@use 'abstracts';
+
+// Base
+@use 'base/reset';
+@use 'base/typography';
+
+// Layout
+@use 'layout/container';
+@use 'layout/header';
+@use 'layout/footer';
+
+// Components
+@use 'components/buttons';
+@use 'components/pill';
+@use 'components/bits';
+@use 'components/card';
+
+// Sections
+@use 'sections/hero';
+@use 'sections/categories';
+@use 'sections/stories';
+@use 'sections/feature-rows';
+@use 'sections/mental';
+@use 'sections/doctors';
+@use 'sections/promos';
+
+// Micro-interactions (hover + scroll reveal) — last so transitions layer on top
+@use 'components/animations';

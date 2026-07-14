@@ -1,0 +1,76 @@
+@use '../abstracts' as *;
+
+// ============================================================
+//  Micro-interactions — hover states + scroll reveal.
+//  These NEVER change the resting UI; they only animate on
+//  hover or as elements scroll into view. With JS disabled,
+//  the `.reveal-ready` class is never added, so everything
+//  renders in its normal, fully-visible state.
+// ============================================================
+
+// ---- Card title colour shift on hover ----
+.card__title, .fcard__title, .dcard__title,
+.hcard__title, .erow__title, .lrow__title { transition: color 0.18s ease; }
+
+.card:hover  .card__title,
+.fcard:hover .fcard__title,
+.dcard:hover .dcard__title,
+.hcard:hover .hcard__title,
+.erow:hover  .erow__title,
+.lrow:hover  .lrow__title { color: $c-blue; }
+
+// ---- Gentle image zoom on media hover ----
+.card__media img, .fcard__media img, .dcard__media img,
+.hcard__thumb img, .erow__thumb img, .lrow__thumb img,
+.srow__thumb img { transition: transform 0.45s ease; }
+
+.card:hover  .card__media img,
+.fcard:hover .fcard__media img,
+.dcard:hover .dcard__media img,
+.hcard:hover .hcard__thumb img,
+.erow:hover  .erow__thumb img,
+.lrow:hover  .lrow__thumb img,
+.srow:hover  .srow__thumb img { transform: scale(1.05); }
+
+// ---- Buttons: subtle lift + shadow ----
+.btn { transition: filter 0.15s ease, transform 0.12s ease, box-shadow 0.2s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn--green:hover { box-shadow: 0 8px 20px rgba(56, 161, 105, 0.32); }
+.btn--light:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14); }
+
+// ---- Nav links ----
+.nav__menu a { transition: opacity 0.15s ease, color 0.15s ease; }
+
+// ---- Share / action icon nudge ----
+.icon-btn svg { transition: transform 0.15s ease; }
+.card:hover .icon-btn svg,
+.dcard:hover .icon-btn svg,
+.fcard:hover .icon-btn svg { transform: translateX(2px); }
+
+// ============================================================
+//  Scroll reveal
+// ============================================================
+$reveal: '.catcard, .card, .fcard, .dcard, .hcard, .erow, .lrow, .srow, .ocard, .promo-card, .promo-banner, .newsletter, .cta, .sec-head';
+
+.reveal-ready :is(#{$reveal}) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal-ready :is(#{$reveal}).in { opacity: 1; transform: none; }
+
+// ---- Respect reduced-motion: no reveal, no hover motion ----
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal-ready :is(#{$reveal}) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .btn:hover,
+  .card:hover, .fcard:hover, .dcard:hover, .hcard:hover { transform: none; }
+  .card:hover .card__media img,
+  .fcard:hover .fcard__media img,
+  .dcard:hover .dcard__media img { transform: none; }
+}

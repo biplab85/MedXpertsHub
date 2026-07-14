@@ -1,0 +1,102 @@
+@use '../abstracts' as *;
+
+.site-footer {
+  background: $c-footer-bg;
+  margin-top: 50px;
+  padding-top: 40px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 361fr 149fr 420fr;
+    gap: 60px;
+    padding-bottom: 32px;
+  }
+
+  &__brand-name {
+    margin-bottom: 16px;
+    img { height: 30px; width: auto; display: block; }
+  }
+  &__brand-text {
+    font-size: 16px;
+    color: $c-muted-2;
+    margin-bottom: 24px;
+    max-width: 361px;
+  }
+
+  &__socials {
+    @include flex(row, 8px, center);
+    a {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      @include flex(row, 0, center, center);
+      color: $c-white;
+      transition: transform 0.15s ease;
+      svg { width: 18px; height: 18px; }
+      &:hover { transform: translateY(-2px); }
+    }
+  }
+
+  &__col-title {
+    font-size: 20px;
+    font-weight: $fw-semibold;
+    color: $c-ink;
+    margin-bottom: 24px;
+  }
+  &__links {
+    @include flex(column, 12px);
+    a { font-size: 16px; font-weight: $fw-medium; color: $c-ink; &:hover { color: $c-blue; } }
+  }
+
+  &__signup-title {
+    font-size: 20px;
+    font-weight: $fw-medium;
+    color: $c-ink;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  &__signup-text {
+    font-size: 16px;
+    color: $c-muted-2;
+    margin-bottom: 24px;
+  }
+  &__signup-field {
+    @include flex(row, 10px, center, space-between);
+    background: $c-footer-bg;
+    border: 1px solid $c-border-2;
+    border-radius: 12px;
+    padding: 8px 8px 8px 16px;
+    max-width: 420px;
+
+    input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      color: $c-ink;
+      &::placeholder { color: $c-muted; }
+    }
+    .btn {
+      flex: 0 0 auto;
+      height: 44px;
+      padding: 0 22px;
+      font-size: 16px;
+    }
+  }
+
+  &__bar {
+    border-top: 1px solid $c-border-2;
+    padding: 16px 0 24px;
+    text-align: center;
+    font-size: 16px;
+    color: $c-muted;
+  }
+
+  @include bp($bp-md) {
+    &__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @include bp($bp-sm) {
+    &__grid { grid-template-columns: 1fr; }
+  }
+}

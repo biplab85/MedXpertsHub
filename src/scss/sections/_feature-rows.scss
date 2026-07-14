@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+// ---- "Patient problems" / "Must read" (S4, S9): tall | feature | tall ----
+.trio-grid {
+  display: grid;
+  grid-template-columns: 306fr 600fr 306fr;
+  gap: 24px;
+  align-items: stretch;
+
+  .card { height: 100%; }
+  .card__media { aspect-ratio: 306 / 266; }
+
+  @include bp($bp-lg) {
+    grid-template-columns: 1fr 1fr;
+    .ocard--feature { grid-column: 1 / -1; }
+  }
+  @include bp($bp-sm) {
+    grid-template-columns: 1fr;
+  }
+
+  // "Must read" variant: feature leads (600 | 306 | 306)
+  &--lead {
+    grid-template-columns: 600fr 306fr 306fr;
+    @include bp($bp-lg) {
+      grid-template-columns: 1fr 1fr;
+      .ocard--feature { grid-column: 1 / -1; }
+    }
+    @include bp($bp-sm) { grid-template-columns: 1fr; }
+  }
+}
+
+// ---- "Nutrition & Diet" (S6): feature left + 2×2 card grid right ----
+.split-grid {
+  display: grid;
+  grid-template-columns: 600fr 636fr;
+  gap: 24px;
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .card__media { aspect-ratio: 306 / 150; }
+
+  @include bp($bp-md) {
+    grid-template-columns: 1fr;
+  }
+  @include bp($bp-sm) {
+    &__cards { grid-template-columns: 1fr; }
+  }
+}

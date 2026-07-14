@@ -1,0 +1,128 @@
+@use '../abstracts' as *;
+
+// ---- Full-width baked banner graphic (S7) ----
+.promo-banner {
+  display: block;
+  border-radius: $radius;
+  overflow: hidden;
+  img { width: 100%; height: auto; display: block; }
+}
+
+// ---- Newsletter mint block (S10) ----
+.newsletter {
+  background: $c-mint;
+  border-radius: $radius;
+  padding: 48px 50px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+
+  &__title {
+    font-size: 40px;
+    font-weight: $fw-semibold;
+    color: $c-mint-ink;
+    line-height: 1.12;
+    margin-bottom: 12px;
+  }
+  &__text {
+    font-size: 16px;
+    color: $c-muted-2;
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+
+  // staggered portrait photo cluster (positioned)
+  &__collage {
+    position: relative;
+    width: 419px;
+    max-width: 100%;
+    aspect-ratio: 419 / 287;
+    flex: 0 0 auto;
+  }
+
+  @include bp($bp-md) {
+    grid-template-columns: 1fr;
+    &__collage { display: none; }
+  }
+  @include bp($bp-sm) {
+    padding: 32px 24px;
+    &__title { font-size: 30px; }
+  }
+}
+
+// Shared collage pieces (newsletter + CTA)
+.collage__img,
+.collage__ph {
+  position: absolute;
+  border-radius: 12px;
+}
+.collage__img { object-fit: cover; }
+
+// ---- "Find a Doctor" CTA (S12) ----
+.cta {
+  position: relative;
+  background: $c-cta-bg;
+  border-radius: $radius;
+  overflow: hidden;
+
+  &__collage {
+    position: relative;
+    aspect-ratio: 1260 / 510;
+
+    // CTA collage tiles: image radius 10, white top-blocks rounded at the bottom
+    .collage__img { border-radius: 10px; }
+    .collage__ph  { border-radius: 0 0 10px 10px; background: $c-white; }
+  }
+
+  &__card {
+    position: absolute;
+    left: 50%;
+    bottom: 16%;
+    transform: translateX(-50%);
+    width: min(500px, 78%);
+    text-align: center;
+    z-index: 3;
+    @include flex(column, 18px, center);
+  }
+  &__title { font-size: 32px; font-weight: $fw-semibold; color: $c-ink; }
+  &__sub { font-size: 16px; color: $c-muted; }
+
+  &__search {
+    @include flex(row, 10px, center, space-between);
+    width: 100%;
+    background: $c-white;
+    border: 1px solid #eff5f8;
+    border-radius: 40px;
+    padding: 6px 6px 6px 20px;
+    box-shadow: 0 12px 30px rgba(30, 42, 56, 0.08);
+
+    input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: $c-ink;
+      background: transparent;
+      &::placeholder { color: $c-muted; }
+    }
+    button {
+      flex: 0 0 auto;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: $c-green;
+      color: $c-white;
+      @include flex(row, 0, center, center);
+      svg { width: 16px; height: 16px; }
+    }
+  }
+
+  // On tablet/mobile: drop the scatter, stack the search card on the blue field
+  @include bp($bp-md) {
+    padding: 40px 24px;
+    &__collage { aspect-ratio: auto; }
+    .collage__img, .collage__ph { display: none; }
+    &__card { position: static; transform: none; width: 100%; max-width: 500px; margin: 0 auto; }
+  }
+}

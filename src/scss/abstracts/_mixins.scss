@@ -1,0 +1,32 @@
+@use 'variables' as *;
+
+// Centered content column with responsive side padding
+@mixin container {
+  width: 100%;
+  max-width: $maxw;
+  margin-inline: auto;
+  padding-inline: 24px;
+
+  @media (max-width: $bp-md) { padding-inline: 20px; }
+  @media (max-width: $bp-sm) { padding-inline: 16px; }
+}
+
+@mixin flex($dir: row, $gap: 0, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $dir;
+  gap: $gap;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// Clamp text to N lines
+@mixin clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin bp($max) {
+  @media (max-width: $max) { @content; }
+}

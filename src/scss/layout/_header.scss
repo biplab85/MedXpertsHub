@@ -1,0 +1,84 @@
+@use '../abstracts' as *;
+
+.site-header {
+  background: $c-header;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav {
+  height: 80px;
+  @include flex(row, 0, center, space-between);
+  color: $c-white;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  img { height: 30px; width: auto; display: block; }
+}
+
+.nav__menu {
+  @include flex(row, 24px, center);
+
+  a {
+    @include flex(row, 4px, center);
+    font-size: 16px;
+    color: $c-white;
+    opacity: 0.92;
+    transition: opacity 0.15s ease;
+
+    &:hover { opacity: 1; }
+    svg { width: 16px; height: 16px; }
+  }
+}
+
+.nav__actions {
+  @include flex(row, 12px, center);
+
+  .icon-btn {
+    width: 20px;
+    height: 20px;
+    color: $c-white;
+    opacity: 0.9;
+    &:hover { opacity: 1; }
+  }
+  .nav__divider {
+    width: 1px;
+    height: 20px;
+    background: $c-hairline;
+  }
+}
+
+.nav__toggle {
+  display: none;
+  width: 28px;
+  height: 28px;
+  color: $c-white;
+}
+
+@include bp($bp-md) {
+  .nav__menu, .nav__actions .icon-btn, .nav__divider { display: none; }
+  .nav__toggle { display: block; }
+
+  .nav__menu.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: $c-header;
+    padding: 20px 24px 28px;
+    border-top: 1px solid $c-hairline;
+    a { font-size: 18px; }
+  }
+}
+
+@include bp($bp-sm) {
+  .nav__actions .btn--light { display: none; }
+  .nav__logo { font-size: 24px; }
+}

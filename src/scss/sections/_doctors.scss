@@ -1,0 +1,95 @@
+@use '../abstracts' as *;
+
+// "Doctor's Advice & Tips" (S8): main list column + "Explore more" sidebar
+.doctors-grid {
+  display: grid;
+  grid-template-columns: 884fr 352fr;
+  gap: 24px;
+  align-items: start;
+
+  &__main { @include flex(column, 20px); }
+
+  @include bp($bp-md) { grid-template-columns: 1fr; }
+}
+
+.doctors-list { @include flex(column, 24px); }
+
+// Large horizontal advice card (884×200)
+.dcard {
+  display: flex;
+  background: $c-white;
+  border-radius: $radius;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.18s ease;
+  &:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); }
+
+  &__media {
+    flex: 0 0 auto;
+    width: 280px;
+    align-self: stretch;
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+  &__body {
+    @include flex(column, 12px);
+    padding: 20px 24px;
+    min-width: 0;
+    flex: 1;
+  }
+  &__title {
+    font-size: 24px;
+    font-weight: $fw-semibold;
+    line-height: 28px;
+    color: $c-ink;
+    @include clamp(2);
+  }
+  &__excerpt {
+    font-size: 14px;
+    color: $c-muted;
+    @include clamp(2);
+  }
+
+  @include bp($bp-sm) {
+    flex-direction: column;
+    &__media { width: 100%; height: 190px; }
+  }
+}
+
+// "Load more" — light grey pill, centred under the main column
+.load-more {
+  align-self: center;
+  background: #eceff0;
+  color: $c-ink;
+  margin-top: 4px;
+}
+
+// ---- Sidebar ----
+.side-title {
+  font-size: 24px;
+  font-weight: $fw-semibold;
+  color: $c-ink;
+  margin-bottom: 4px;
+}
+.doctors-side__list { @include flex(column, 20px); }
+
+// Sidebar row (352×80): 100×80 thumb + pill + title
+.erow {
+  @include flex(row, 16px, center);
+
+  &__thumb {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+  &__body { @include flex(column, 8px); min-width: 0; }
+  &__title {
+    font-size: 20px;
+    font-weight: $fw-semibold;
+    line-height: 23px;
+    color: $c-ink;
+    @include clamp(2);
+  }
+}

@@ -1,0 +1,14 @@
+@use '../abstracts' as *;
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 150px);
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-block: 8px;
+
+  @include bp($bp-lg) { grid-template-columns: repeat(3, 1fr); row-gap: 32px; }
+  @include bp($bp-sm) { grid-template-columns: repeat(2, 1fr); }
+}
